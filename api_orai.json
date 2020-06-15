@@ -1,0 +1,37 @@
+{
+  "orai": {
+    "coord": { "lon": 25.28, "lat": 54.69 },
+    "weather": [
+      {
+        "id": 803,
+        "main": "Clouds",
+        "description": "debesuota su pragiedruliais",
+        "icon": "04d"
+      }
+    ],
+    "base": "stations",
+    "main": {
+      "temp": 21,
+      "feels_like": 21.97,
+      "temp_min": 21,
+      "temp_max": 21,
+      "pressure": 1014,
+      "humidity": 83
+    },
+    "visibility": 10000,
+    "wind": { "speed": 2.6, "deg": 70 },
+    "clouds": { "all": 75 },
+    "dt": 1591957865,
+    "sys": {
+      "type": 1,
+      "id": 1883,
+      "country": "LT",
+      "sunrise": 1591926131,
+      "sunset": 1591988134
+    },
+    "timezone": 10800,
+    "id": 593116,
+    "name": "Vilnius",
+    "cod": 200
+  }
+}

@@ -1,63 +1,50 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "./Header";
-import Body from "./Body";
+import GetBooks from "./GetBooks";
 import { API_URL } from "../constants/global";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
-class App extends Component {
-  state = {
-    booksdb: [],
-    booksType: [],
-  };
+function App() {
+  const [booksType, setBooksType] = useState([]);
+  const [isBooksLoaded, setIsBooksLoaded] = useState(false);
 
   // hooks'ai - klasiu alterantyva, funkcin. komponentuose.
-  componentDidMount() {
-    fetch(API_URL + "/books")
-      .then((res) => res.json())
-      .then((data) => {
-        this.setState({ booksdb: data });
-        console.log("settinu nauja state is db :)");
-      })
-      .catch(console.log);
-  }
+  useEffect(() => {
+    const getTypes = async () => {
+      const types = await fetch(API_URL + "/subjects").then((res) =>
+        res.json()
+      );
 
-  // optimistic user interface
-  handleAddBook = (book) => {
-    console.log("vaziuojam dzesika", book);
+      setBooksType(types);
+      setIsBooksLoaded(true);
+      console.log(types);
+    };
 
-    // surenderinam knyga optimistiksia
-    this.setState((prevState) => {
-      console.log("kuriam nauja state", book);
-      return {
-        booksdb: [
-          ...prevState.booksdb,
-          {
-            title: book.title,
-            languages: book.languages,
-          },
-        ],
-      };
-    });
+    getTypes();
+  }, []);
 
-    // post i API / prettier
-    fetch(API_URL + "/books", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        title: book.title,
-        secondParam: book.languages,
-      }),
-    });
-  };
+  // isfetchinti knygu tipus.
+  // sukisti juos i dropdowna.
+  // submtitinti forma ir pagal tai routingu atidarytiar kita puslapi.
+  // (reducer)
 
-  render() {
-    return (
-      (<Header />),
-      (<Body booksdb={this.state.booksdb} handleAddBook={this.handleAddBook} />)
-    );
-  }
+  return (
+    <Router>
+      {isBooksLoaded ? "loaded" : "loading"}
+
+      {booksType.map((item) => {
+        return (
+          <li>
+            <Link to={`/genre/${item}`}>{item}</Link>
+          </li>
+        );
+      })}
+
+      <Switch>
+        <Route path="/genre/:genreId" component={GetBooks}></Route>
+      </Switch>
+    </Router>
+  );
 }
 
 export default App;

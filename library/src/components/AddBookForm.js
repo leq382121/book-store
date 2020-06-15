@@ -1,11 +1,10 @@
-import React, { Component } from "react";
+import React from "react";
 
-class AddBookForm extends Component {
-  bookInput = React.createRef;
+function AddBookForm({ handleAddBook }) {
+  // bookInput = React.createRef;
 
-  handleSubmit = (event) => {
+  const handleSubmit = (event) => {
     console.log(event);
-    console.log(this.props);
     console.log(event.target);
     event.preventDefault(); //disabling default submit function
 
@@ -17,28 +16,24 @@ class AddBookForm extends Component {
       year: event.target.querySelector('[name="addLanguages"]').value,
     };
 
-    console.log(book);
-
-    this.props.handleAddBook(book);
+    handleAddBook(book);
 
     // clearing form
     event.currentTarget.reset();
   };
 
-  render() {
-    return (
-      <form onSubmit={this.handleSubmit}>
-        <label> Add New Book Title </label>
-        <input name="addBook" type="text" />
+  return (
+    <form onSubmit={handleSubmit}>
+      <label> Add New Book Title </label>
+      <input name="addBook" type="text" />
 
-        <label> Add Book languages</label>
-        <input name="addLanguages" type="text" />
-        <br />
+      <label> Add Book languages</label>
+      <input name="addLanguages" type="text" />
+      <br />
 
-        <input type="submit"></input>
-      </form>
-    );
-  }
+      <input type="submit"></input>
+    </form>
+  );
 }
 
 export default AddBookForm;
