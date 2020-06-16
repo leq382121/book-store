@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
-import Header from "./Header";
-import GetBooks from "./GetBooks";
+import Header from "./static/Header";
+import GetBooks from "./functional/GetBooks";
 import { API_URL } from "../constants/global";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 function App() {
-  const [booksType, setBooksType] = useState([]);
-  const [isBooksLoaded, setIsBooksLoaded] = useState(false);
+  const [booksType, setBooksType] = useState(["/"]);
 
   // hooks'ai - klasiu alterantyva, funkcin. komponentuose.
   useEffect(() => {
@@ -16,8 +15,6 @@ function App() {
       );
 
       setBooksType(types);
-      setIsBooksLoaded(true);
-      console.log(types);
     };
 
     getTypes();
@@ -29,21 +26,25 @@ function App() {
   // (reducer)
 
   return (
-    <Router>
-      {isBooksLoaded ? "loaded" : "loading"}
-
-      {booksType.map((item) => {
-        return (
-          <li>
+    (<Header />),
+    (
+      <Router>
+        <li>
+          <Link to="/" exact>
+            Home
+          </Link>
+        </li>
+        {booksType.map((item) => (
+          <li key={item}>
             <Link to={`/genre/${item}`}>{item}</Link>
           </li>
-        );
-      })}
+        ))}
 
-      <Switch>
-        <Route path="/genre/:genreId" component={GetBooks}></Route>
-      </Switch>
-    </Router>
+        <Switch>
+          <Route path="/genre/:genreId" component={GetBooks}></Route>
+        </Switch>
+      </Router>
+    )
   );
 }
 

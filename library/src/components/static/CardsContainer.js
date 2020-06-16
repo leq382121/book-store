@@ -1,9 +1,7 @@
 import React from "react";
-import Card from "./Card";
+import Card from "../functional/Card";
 
-const Cards = ({ booksDb }) => {
-  console.log(booksDb);
-
+const CardsContainer = ({ booksDb }) => {
   return (
     <div>
       <center>
@@ -22,4 +20,4 @@ const Cards = ({ booksDb }) => {
 // ivedu nauja teksta
 // subtimtas pakeicia ta teksta api'juje.
 
-export default Cards;
+export default CardsContainer;

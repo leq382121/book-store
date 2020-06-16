@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { API_URL } from "../constants/global";
+import { API_URL } from "../../constants/global";
 
 const Card = ({ book }) => {
   const [isEditButtonActive, setIsEditButtonActive] = useState(false);

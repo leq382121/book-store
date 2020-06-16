@@ -4,8 +4,6 @@ function AddBookForm({ handleAddBook }) {
   // bookInput = React.createRef;
 
   const handleSubmit = (event) => {
-    console.log(event);
-    console.log(event.target);
     event.preventDefault(); //disabling default submit function
 
     console.log(event.target.querySelector('[name="addBook"]').value);
