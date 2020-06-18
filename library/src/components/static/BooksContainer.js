@@ -6,7 +6,7 @@ const BooksContainer = (props) => {
   return (
     <div className="main">
       <Cards booksDb={props.booksDb} />
-      <AddBookForm handleAddBook={props.handleAddBook} booksType={props.booksType} />
+      <AddBookForm handleAddBook={props.handleAddBook} booksType={props.booksType} addNewGenre={props.addNewGenre} />
     </div>
   );
 };

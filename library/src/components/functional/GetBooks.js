@@ -6,6 +6,8 @@ function GetBooks(props) {
   const [booksDb, setBooksDb] = useState([]);
   const genre = props.match.params.genreId;
 
+  console.log(props)
+
   useEffect(() => {
     const getBookData = async () => {
       const data = await fetch(
@@ -34,13 +36,13 @@ function GetBooks(props) {
       },
       body: JSON.stringify({
         title: book.title,
-        subjects: book.subjects,
+        subjects: [book.subjects],
       }),
     });
   };
 
   return (
-    <BooksContainer booksDb={booksDb} handleAddBook={handleAddBook} booksType={props.booksType} />
+    <BooksContainer booksDb={booksDb} handleAddBook={handleAddBook} booksType={props.booksType} addNewGenre={props.addNewGenre} />
   )
 }
 

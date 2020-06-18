@@ -7,22 +7,36 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 function App() {
   const [booksType, setBooksType] = useState(["/"]);
 
-  // hooks'ai - klasiu alterantyva, funkcin. komponentuose.
+  const addNewGenre = (newGenre) => {
+    setBooksType([...booksType, newGenre])
+  }
+
   useEffect(() => {
+
+    /**
+     *  Fetching data from Books API
+     * 
+     */
+
     const getTypes = async () => {
       const types = await fetch(API_URL + "/subjects").then((res) =>
         res.json()
       );
 
+      /**
+       *  Updating hook state
+       * 
+       */
+
       setBooksType(types);
     };
+
     getTypes();
   }, []);
 
 
-  // isfetchinti knygu tipus.
-  // sukisti juos i dropdowna.
-  // submtitinti forma ir pagal tai routingu atidarytiar kita puslapi.
+
+
   // (reducer)
 
   return (
@@ -42,7 +56,7 @@ function App() {
 
         <Switch>
           <Route path="/genre/:genreId"
-            render={(props) => { return <GetBooks {...props} booksType={booksType} /> }} ></Route>
+            render={(props) => { return <GetBooks {...props} booksType={booksType} addNewGenre={addNewGenre} /> }} ></Route>
         </Switch>
       </Router>
     )
