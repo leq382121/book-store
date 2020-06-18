@@ -16,9 +16,9 @@ function App() {
 
       setBooksType(types);
     };
-
     getTypes();
   }, []);
+
 
   // isfetchinti knygu tipus.
   // sukisti juos i dropdowna.
@@ -30,7 +30,7 @@ function App() {
     (
       <Router>
         <li>
-          <Link to="/" exact>
+          <Link to="/" exact="true">
             Home
           </Link>
         </li>
@@ -41,7 +41,8 @@ function App() {
         ))}
 
         <Switch>
-          <Route path="/genre/:genreId" component={GetBooks}></Route>
+          <Route path="/genre/:genreId"
+            render={(props) => { return <GetBooks {...props} booksType={booksType} /> }} ></Route>
         </Switch>
       </Router>
     )

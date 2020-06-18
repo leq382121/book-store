@@ -2,11 +2,11 @@ import React from "react";
 import Cards from "./CardsContainer";
 import AddBookForm from "./AddBookForm";
 
-const BooksContainer = ({ booksDb, handleAddBook }) => {
+const BooksContainer = (props) => {
   return (
     <div className="main">
-      <Cards booksDb={booksDb} />
-      <AddBookForm handleAddBook={handleAddBook} />
+      <Cards booksDb={props.booksDb} />
+      <AddBookForm handleAddBook={props.handleAddBook} booksType={props.booksType} />
     </div>
   );
 };

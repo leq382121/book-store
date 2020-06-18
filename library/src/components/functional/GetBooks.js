@@ -4,11 +4,12 @@ import { API_URL } from "../../constants/global";
 
 function GetBooks(props) {
   const [booksDb, setBooksDb] = useState([]);
+  const genre = props.match.params.genreId;
 
   useEffect(() => {
     const getBookData = async () => {
       const data = await fetch(
-        API_URL + `/books/?subjects_like=${props.match.params.genreId}`
+        API_URL + `/books/?subjects_like=${genre}`
       )
         .then((res) => res.json())
         .catch(console.log);
@@ -17,9 +18,11 @@ function GetBooks(props) {
     };
 
     getBookData();
-  }, [props.match.params.genreId]);
+  }, [genre]);
+
 
   // optimistic user interface
+  // using here due to update list of books
   const handleAddBook = (book) => {
     setBooksDb([...booksDb, book]);
 
@@ -31,12 +34,14 @@ function GetBooks(props) {
       },
       body: JSON.stringify({
         title: book.title,
-        secondParam: book.languages,
+        subjects: book.subjects,
       }),
     });
   };
 
-  return <BooksContainer booksDb={booksDb} handleAddBook={handleAddBook} />;
+  return (
+    <BooksContainer booksDb={booksDb} handleAddBook={handleAddBook} booksType={props.booksType} />
+  )
 }
 
 export default GetBooks;

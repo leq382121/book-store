@@ -4,12 +4,9 @@ import { API_URL } from "../../constants/global";
 const Card = ({ book }) => {
   const [isEditButtonActive, setIsEditButtonActive] = useState(false);
   const [isTitle, setIsTitle] = useState(book.title);
+  const [isSubject, setSubjects] = useState(book.subjects);
 
   const onEditButtonClick = (event, id) => {
-    // const title = event.currentTarget.parentNode.querySelector(
-    //   ".card-title-edit"
-    // ).value;
-
     const title = isTitle;
 
     setIsEditButtonActive(!isEditButtonActive);
@@ -34,6 +31,7 @@ const Card = ({ book }) => {
       },
       body: JSON.stringify({
         title: title,
+        subjects: book.subjects,
       }),
     });
   };
@@ -44,12 +42,12 @@ const Card = ({ book }) => {
         {!isEditButtonActive ? (
           <h5 className="card-title">{isTitle}</h5>
         ) : (
-          <input
-            type="text"
-            className="card-title-edit"
-            defaultValue={isTitle}
-          ></input>
-        )}
+            <input
+              type="text"
+              className="card-title-edit"
+              defaultValue={isTitle}
+            ></input>
+          )}
 
         <h6 className="card-subtitle mb-2 text-muted">{book.id}</h6>
         <button
