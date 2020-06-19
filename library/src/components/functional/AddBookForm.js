@@ -1,5 +1,5 @@
 import React from "react";
-import { BOOK_SCHEMA } from './../../constants/global'
+import { BOOK_SCHEMA } from '../../constants/global'
 
 function AddBookForm({ handleAddBook, booksType, addNewGenre }) {
 
@@ -39,7 +39,7 @@ function AddBookForm({ handleAddBook, booksType, addNewGenre }) {
       <div className="radio-buttons">
         {booksType.map((type, index) => {
           return (
-            <label htmlFor={type + index}>{type}
+            <label htmlFor={type + index} key={type + index}>{type}
               <input
                 type="radio"
                 name={type}
@@ -68,35 +68,3 @@ function AddBookForm({ handleAddBook, booksType, addNewGenre }) {
 }
 
 export default AddBookForm;
-
-
-// {  
-//   "id":74,
-//   "authors":[  
-//      {  
-//         "birth_year":1835,
-//         "death_year":1910,
-//         "name":"Twain, Mark"
-//      }
-//   ],
-//   "bookshelves":[  
-//      "Banned Books from Anne Haight's list"
-//   ],
-//   "download_count":16204,
-//   "formats":{  
-//      "image/jpeg":"http://www.gutenberg.org/cache/epub/74/pg74.cover.medium.jpg",
-//      "text/plain; charset=utf-8":"http://www.gutenberg.org/files/74/74-0.zip",
-//      "application/rdf+xml":"http://www.gutenberg.org/ebooks/74.rdf",
-//      "application/x-mobipocket-ebook":"http://www.gutenberg.org/ebooks/74.kindle.images",
-//      "application/epub+zip":"http://www.gutenberg.org/ebooks/74.epub.noimages",
-//      "text/html; charset=utf-8":"http://www.gutenberg.org/files/74/74-h/74-h.htm",
-//      "text/plain; charset=iso-8859-1":"http://www.gutenberg.org/files/74/74.txt",
-//      "application/zip":"http://www.gutenberg.org/files/74/74.zip"
-//   },
-//   "languages":[  
-//      "en"
-//   ],
-//   "media_type":"Text",
-//   "subjects": ["Science"],
-//   "title":"The Adventures of Tom Sawyer"
-// }

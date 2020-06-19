@@ -1,6 +1,6 @@
 import React from "react";
 import Cards from "./CardsContainer";
-import AddBookForm from "./AddBookForm";
+import AddBookForm from "../functional/AddBookForm";
 
 const BooksContainer = (props) => {
   return (

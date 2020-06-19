@@ -4,6 +4,14 @@ import GetBooks from "./functional/GetBooks";
 import { API_URL } from "../constants/global";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
+/**
+ * 
+ * Later: 
+ * https://jestjs.io/
+ * https://storybook.js.org/docs/basics/introduction/
+ * 
+ */
+
 function App() {
   const [booksType, setBooksType] = useState(["/"]);
 
@@ -33,11 +41,6 @@ function App() {
 
     getTypes();
   }, []);
-
-
-
-
-  // (reducer)
 
   return (
     (<Header />),
