@@ -10,6 +10,10 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
  * https://jestjs.io/
  * https://storybook.js.org/docs/basics/introduction/
  * 
+ * Next Steps:
+ * Fix AddBookForm
+ * Make Books fully Editable (For the elements what makes sense   )
+ * 
  */
 
 function App() {

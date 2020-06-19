@@ -27,7 +27,7 @@ function AddBookForm({ handleAddBook, booksType, addNewGenre }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <label> Add New Book Title </label>
+      <label> Add New Book Title </label><br />
       <input name={BOOK_SCHEMA.title} type="text" />
 
       <br />
@@ -36,23 +36,27 @@ function AddBookForm({ handleAddBook, booksType, addNewGenre }) {
       <label> Add Book Subjects</label>
 
       {/* later let's add functionality for adding more subjects*/}
-      <div className="radio-buttons">
-        {booksType.map((type, index) => {
-          return (
-            <label htmlFor={type + index} key={type + index}>{type}
-              <input
-                type="radio"
-                name={type}
-                id={type + index}
-                value={type}
-              />
-            </label>
-          )
-        })}
+      <div className="checkbox-buttons">
+        <fieldset>
+          {booksType.map((type, index) => {
+            return (
+
+              <label htmlFor={type + index} key={type + index} >{type}
+                <input
+                  type="checkbox"
+                  name={type}
+                  id={type + index}
+                  value={type}
+                  className="mx-2"
+                />
+              </label>
+            )
+          })}
+        </fieldset>
 
         {/* adding a new Genre */}
         <div className="addNewGenre">
-          <label>Add new Genre</label>
+          <label>Add new Genre</label><br />
           <input type="text" className="input"></input>
           <button type="button" onClick={(e) => { handleButtonClick(e) }}>+</button>
         </div>
