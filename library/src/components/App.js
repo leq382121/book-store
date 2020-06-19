@@ -13,7 +13,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
  */
 
 function App() {
-  const [booksType, setBooksType] = useState(["/"]);
+  const [booksType, setBooksType] = useState([]);
 
   const addNewGenre = (newGenre) => {
     setBooksType([...booksType, newGenre])
@@ -42,28 +42,26 @@ function App() {
     getTypes();
   }, []);
 
-  return (
-    (<Header />),
-    (
-      <Router>
-        <li>
-          <Link to="/" exact="true">
-            Home
-          </Link>
+  return ([
+    <Header />,
+    <Router>
+      <li>
+        <Link to="/" exact="true">
+          Home
+      </Link>
+      </li>
+      {booksType.map((item) => (
+        <li key={item}>
+          <Link to={`/genre/${item}`}>{item}</Link>
         </li>
-        {booksType.map((item) => (
-          <li key={item}>
-            <Link to={`/genre/${item}`}>{item}</Link>
-          </li>
-        ))}
+      ))}
 
-        <Switch>
-          <Route path="/genre/:genreId"
-            render={(props) => { return <GetBooks {...props} booksType={booksType} addNewGenre={addNewGenre} /> }} ></Route>
-        </Switch>
-      </Router>
-    )
-  );
+      <Switch>
+        <Route path="/genre/:genreId"
+          render={(props) => { return <GetBooks {...props} booksType={booksType} addNewGenre={addNewGenre} /> }} ></Route>
+      </Switch>
+    </Router>
+  ]);
 }
 
 export default App;

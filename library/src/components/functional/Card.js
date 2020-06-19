@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { API_URL } from "../../constants/global";
+import BookInfoListItem from "./../static/BookInfoListItem";
 
 const Card = ({ book }) => {
   const [isEditButtonActive, setIsEditButtonActive] = useState(false);
@@ -56,19 +57,11 @@ const Card = ({ book }) => {
         <h6 className="card-subtitle mb-2 text-muted">Media type: {book.media_type}</h6>
         <h6 className="card-subtitle mb-4 text-muted">ID: {book.id}</h6>
 
-        <h5 className="card-subtitle mb-2">Languages</h5>
-        <ul>
-          {book.languages.map((language, index) => {
-            return ([
-              <li key={language + index}>
-                <p className="card-subtitle mb-2 text-muted">{language}</p>
-              </li>
-            ]);
-          })}
-        </ul>
+
+        <BookInfoListItem categoryName="Languages" arrayOfValues={book.languages} />
+        <BookInfoListItem categoryName="Subjects" arrayOfValues={book.subjects} />
 
         <h5 className="card-subtitle mb-2">Authors</h5>
-
         <ul>
           {book.authors.map((oneBook, index) => {
             return ([
@@ -100,6 +93,19 @@ const Card = ({ book }) => {
         >
           {isEditButtonActive ? "Submit" : "Edit"}
         </button>
+
+        {
+          isEditButtonActive
+            ? <button
+              className="card-update-cancel ml-2"
+              type="button"
+              onClick={() => (setIsEditButtonActive(false))}
+            >
+              Cancel
+            </button>
+            : null
+        }
+
       </div>
     </li>
   );

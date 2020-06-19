@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import BooksContainer from "../static/BooksContainer";
 import { API_URL } from "../../constants/global";
 
-function GetBooks(props) {
+const GetBooks = (props) => {
   const [booksDb, setBooksDb] = useState([]);
   const genre = props.match.params.genreId;
 
@@ -21,7 +21,6 @@ function GetBooks(props) {
 
     getBookData();
   }, [genre]);
-
 
   // optimistic user interface
   // using here due to update list of books
