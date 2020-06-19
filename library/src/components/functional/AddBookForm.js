@@ -35,7 +35,13 @@ function AddBookForm({ handleAddBook, booksType, addNewGenre }) {
 
       <label> Add Book Subjects</label>
 
-      {/* later let's add functionality for adding more subjects*/}
+      {/* 
+      
+        https://medium.com/@wlodarczyk_j/handling-multiple-checkboxes-in-react-js-337863fd284e
+
+        will try to implement this logic
+      */}
+
       <div className="checkbox-buttons">
         <fieldset>
           {booksType.map((type, index) => {
