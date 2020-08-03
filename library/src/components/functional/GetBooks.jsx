@@ -6,7 +6,7 @@ const GetBooks = (props) => {
   const [booksDb, setBooksDb] = useState([]);
   const genre = props.match.params.genreId;
 
-  console.log(props)
+  // console.log(props)
 
   useEffect(() => {
     const getBookData = async () => {
@@ -35,7 +35,7 @@ const GetBooks = (props) => {
       },
       body: JSON.stringify({
         title: book.title,
-        subjects: [book.subjects],
+        subjects: book.subjects,
       }),
     });
   };

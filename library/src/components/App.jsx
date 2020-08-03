@@ -16,6 +16,17 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
  * 
  */
 
+/**
+ * 
+ * Cool tip: 
+ * 
+ * We can use [key]:property to Update Hooks. So if we have form with 
+ * 5 elements f.ex we can use their names and use name as key Variable
+ * 
+ * pretty Cool DRY. 
+ * 
+ */
+
 function App() {
   const [booksType, setBooksType] = useState([]);
 
@@ -25,21 +36,13 @@ function App() {
 
   useEffect(() => {
 
-    /**
-     *  Fetching data from Books API
-     * 
-     */
-
+    // Fetching data from Books API
     const getTypes = async () => {
       const types = await fetch(API_URL + "/subjects").then((res) =>
         res.json()
       );
 
-      /**
-       *  Updating hook state
-       * 
-       */
-
+      // Updating hook state
       setBooksType(types);
     };
 
