@@ -1,41 +1,24 @@
 import React, { useState, useEffect } from "react";
-import Header from "./static/Header";
 import GetBooks from "./functional/GetBooks";
 import { API_URL } from "../constants/global";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 /**
- * 
- * Later: 
+ *
+ * Later:
  * https://jestjs.io/
  * https://storybook.js.org/docs/basics/introduction/
- * 
+ *
  * Next Steps:
- * Fix AddBookForm
+ * Fix AddBookForm - done
  * Make Books fully Editable (For the elements what makes sense)
- * 
- */
-
-/**
- * 
- * Cool tip: 
- * 
- * We can use [key]:property to Update Hooks. So if we have form with 
- * 5 elements f.ex we can use their names and use name as key Variable
- * 
- * pretty Cool DRY. 
- * 
+ *
  */
 
 function App() {
   const [booksType, setBooksType] = useState([]);
 
-  const addNewGenre = (newGenre) => {
-    setBooksType([...booksType, newGenre])
-  }
-
   useEffect(() => {
-
     // Fetching data from Books API
     const getTypes = async () => {
       const types = await fetch(API_URL + "/subjects").then((res) =>
@@ -49,14 +32,14 @@ function App() {
     getTypes();
   }, []);
 
-  return ([
-    <Header />,
+  return [
     <Router>
       <li>
         <Link to="/" exact="true">
           Home
-      </Link>
+        </Link>
       </li>
+
       {booksType.map((item) => (
         <li key={item}>
           <Link to={`/genre/${item}`}>{item}</Link>
@@ -64,11 +47,15 @@ function App() {
       ))}
 
       <Switch>
-        <Route path="/genre/:genreId"
-          render={(props) => { return <GetBooks {...props} booksType={booksType} addNewGenre={addNewGenre} /> }} ></Route>
+        <Route
+          path="/genre/:BookSubject"
+          render={(props) => {
+            return <GetBooks {...props} booksType={booksType} />;
+          }}
+        ></Route>
       </Switch>
-    </Router>
-  ]);
+    </Router>,
+  ];
 }
 
 export default App;

@@ -1,7 +1,7 @@
 import React from "react";
 import { BOOK_SCHEMA } from "../../constants/global";
 
-function AddBookForm({ handleAddBook, booksType, addNewGenre }) {
+function AddBookForm({ handleAddBook, booksType }) {
   const handleSubmit = (event) => {
     const addBookSubmitData = new FormData(event.target);
     const newBook = {};
@@ -9,11 +9,11 @@ function AddBookForm({ handleAddBook, booksType, addNewGenre }) {
     event.preventDefault();
 
     for (const formItemKey of addBookSubmitData.keys()) {
-      newBook[formItemKey] = addBookSubmitData.getAll(formItemKey) || null
+      newBook[formItemKey] = addBookSubmitData.getAll(formItemKey) || null;
     }
 
     handleAddBook(newBook);
-    event.currentTarget.reset(); // clearing form
+    event.currentTarget.reset();
   };
 
   return (
@@ -26,9 +26,7 @@ function AddBookForm({ handleAddBook, booksType, addNewGenre }) {
 
       <label> Add Book Genre</label>
       <div className="checkbox-buttons">
-
         <select name={BOOK_SCHEMA.subjects} multiple size="5">
-
           {booksType.map((type, index) => {
             return (
               <option key={type + index} value={type}>
@@ -36,25 +34,8 @@ function AddBookForm({ handleAddBook, booksType, addNewGenre }) {
               </option>
             );
           })}
-
         </select>
-
-        {/* adding a new Genre */}
-        {/* <div className="addNewGenre">
-          <label>Add new Genre</label>
-          <br />
-          <input type="text" className="input"></input>
-          <button
-            type="button"
-            onClick={(e) => {
-              handleButtonClick(e);
-            }}
-          >
-            +
-          </button>
-        </div> */}
       </div>
-
       <br />
       <br />
 

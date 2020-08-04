@@ -3,29 +3,32 @@ import BooksContainer from "../static/BooksContainer";
 import { API_URL } from "../../constants/global";
 
 const GetBooks = (props) => {
-  const [booksDb, setBooksDb] = useState([]);
-  const genre = props.match.params.genreId;
+  const [booksState, setBooksState] = useState([]);
+  const selectedSubject = props.match.params.BookSubject;
 
   useEffect(() => {
-    const getBookData = async () => {
+    const getBookDataBySubject = async () => {
       const data = await fetch(
-        API_URL + `/books/?subjects_like=${genre}`
+        API_URL + `/books/?subjects_like=${selectedSubject}`
       )
         .then((res) => res.json())
         .catch(console.log);
 
-      setBooksDb(data);
+      setBooksState(data);
     };
 
-    getBookData();
-  }, [genre]);
+    getBookDataBySubject();
+  }, [selectedSubject]);
 
-  const handleAddBook = (book) => {
+  const handleAddBook = (newBook) => {
     // optimistic user interface
     // using here due to update list of books
-
-    if (book.subjects.find((currentlyAddibleGenre) => currentlyAddibleGenre === genre)) {
-      setBooksDb([...booksDb, book])
+    if (
+      newBook.subjects.find(
+        (currentlyAddibleGenre) => currentlyAddibleGenre === selectedSubject
+      )
+    ) {
+      setBooksState([...booksState, newBook]);
     }
 
     fetch(API_URL + "/books", {
@@ -35,15 +38,19 @@ const GetBooks = (props) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        title: book.title[0],
-        subjects: book.subjects,
+        title: newBook.title[0],
+        subjects: newBook.subjects,
       }),
     });
   };
 
   return (
-    <BooksContainer booksDb={booksDb} handleAddBook={handleAddBook} booksType={props.booksType} addNewGenre={props.addNewGenre} />
-  )
-}
+    <BooksContainer
+      booksState={booksState}
+      handleAddBook={handleAddBook}
+      booksType={props.booksType}
+    />
+  );
+};
 
 export default GetBooks;

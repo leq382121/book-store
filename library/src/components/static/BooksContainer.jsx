@@ -5,8 +5,12 @@ import AddBookForm from "../functional/AddBookForm";
 const BooksContainer = (props) => {
   return (
     <div className="main">
-      <Cards booksDb={props.booksDb} />
-      <AddBookForm handleAddBook={props.handleAddBook} booksType={props.booksType} addNewGenre={props.addNewGenre} />
+      <Cards booksState={props.booksState} />
+
+      <AddBookForm
+        handleAddBook={props.handleAddBook}
+        booksType={props.booksType}
+      />
     </div>
   );
 };
