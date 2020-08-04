@@ -12,7 +12,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
  * 
  * Next Steps:
  * Fix AddBookForm
- * Make Books fully Editable (For the elements what makes sense   )
+ * Make Books fully Editable (For the elements what makes sense)
  * 
  */
 

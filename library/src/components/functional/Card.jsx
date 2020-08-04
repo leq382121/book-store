@@ -67,10 +67,15 @@ const Card = ({ book }) => {
         </h6>
         <h6 className="card-subtitle mb-4 text-muted">ID: {book.id}</h6>
 
-        <BookInfoListItem
-          categoryName="Languages"
-          arrayOfValues={book.languages}
-        />
+        {
+          book.languages
+            ? <BookInfoListItem
+              categoryName="Languages"
+              arrayOfValues={book.languages}
+            />
+            : null
+        }
+
         <BookInfoListItem
           categoryName="Subjects"
           arrayOfValues={book.subjects}

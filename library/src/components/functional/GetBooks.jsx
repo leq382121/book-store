@@ -6,8 +6,6 @@ const GetBooks = (props) => {
   const [booksDb, setBooksDb] = useState([]);
   const genre = props.match.params.genreId;
 
-  // console.log(props)
-
   useEffect(() => {
     const getBookData = async () => {
       const data = await fetch(
@@ -22,10 +20,13 @@ const GetBooks = (props) => {
     getBookData();
   }, [genre]);
 
-  // optimistic user interface
-  // using here due to update list of books
   const handleAddBook = (book) => {
-    setBooksDb([...booksDb, book]);
+    // optimistic user interface
+    // using here due to update list of books
+
+    if (book.subjects.find((currentlyAddibleGenre) => currentlyAddibleGenre === genre)) {
+      setBooksDb([...booksDb, book])
+    }
 
     fetch(API_URL + "/books", {
       method: "POST",
@@ -34,7 +35,7 @@ const GetBooks = (props) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        title: book.title,
+        title: book.title[0],
         subjects: book.subjects,
       }),
     });

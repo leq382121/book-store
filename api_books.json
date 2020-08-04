@@ -135,6 +135,58 @@
     {
       "title": "test title is good",
       "id": 33285
+    },
+    {
+      "title": [
+        "Aaaaa"
+      ],
+      "subjects": [
+        "Fiction",
+        "Science"
+      ],
+      "id": 33286
+    },
+    {
+      "title": "Nauja knyga dabar as ja editinu",
+      "subjects": [
+        "Science"
+      ],
+      "id": 33287
+    },
+    {
+      "title": "DAr viena nauja knyga",
+      "subjects": [
+        "Fiction"
+      ],
+      "id": 33288
+    },
+    {
+      "title": "Pukeee",
+      "subjects": [
+        "Fiction"
+      ],
+      "id": 33289
+    },
+    {
+      "title": "Puka la caru",
+      "subjects": [
+        "Science"
+      ],
+      "id": 33290
+    },
+    {
+      "title": "Knyga Only fiction",
+      "subjects": [
+        "Fiction"
+      ],
+      "id": 33291
+    },
+    {
+      "title": "Knyga Only Science",
+      "subjects": [
+        "Science"
+      ],
+      "id": 33292
     }
   ]
 }
