@@ -5,11 +5,8 @@ import BookInfoListItem from "./../static/BookInfoListItem";
 const Card = ({ book }) => {
   const [isEditButtonActive, setIsEditButtonActive] = useState(false);
   const [isTitle, setIsTitle] = useState(book.title);
-  const [isSubject, setSubjects] = useState(book.subjects);
 
   const onEditButtonClick = (event, id) => {
-    const title = isTitle;
-
     setIsEditButtonActive(!isEditButtonActive);
 
     if (isEditButtonActive) {
@@ -52,12 +49,12 @@ const Card = ({ book }) => {
         {!isEditButtonActive ? (
           <h5 className="card-title">{isTitle}</h5>
         ) : (
-            <input
-              type="text"
-              className="card-title-edit"
-              defaultValue={isTitle}
-            ></input>
-          )}
+          <input
+            type="text"
+            className="card-title-edit"
+            defaultValue={isTitle}
+          ></input>
+        )}
 
         <h6 className="card-subtitle mb-2 text-muted">
           Download count: {book.download_count}
@@ -67,14 +64,12 @@ const Card = ({ book }) => {
         </h6>
         <h6 className="card-subtitle mb-4 text-muted">ID: {book.id}</h6>
 
-        {
-          book.languages
-            ? <BookInfoListItem
-              categoryName="Languages"
-              arrayOfValues={book.languages}
-            />
-            : null
-        }
+        {book.languages ? (
+          <BookInfoListItem
+            categoryName="Languages"
+            arrayOfValues={book.languages}
+          />
+        ) : null}
 
         <BookInfoListItem
           categoryName="Subjects"
@@ -83,10 +78,9 @@ const Card = ({ book }) => {
 
         <h5 className="card-subtitle mb-2">Authors</h5>
         <ul>
-          {
-            !book.authors ?
-              null
-              : book.authors.map((oneBook, index) => {
+          {!book.authors
+            ? null
+            : book.authors.map((oneBook, index) => {
                 return [
                   <li key={oneBook.name + index}>
                     <p className="card-subtitle mb-2 text-muted">
@@ -100,16 +94,14 @@ const Card = ({ book }) => {
                     </p>
                   </li>,
                 ];
-              })
-          }
+              })}
         </ul>
 
         <h5 className="card-subtitle mb-2">Download As: </h5>
         <ul>
-          {
-            !book.formats ?
-              null
-              : Object.entries(book.formats, 0).map(([key, val]) => (
+          {!book.formats
+            ? null
+            : Object.entries(book.formats, 0).map(([key, val]) => (
                 <li key={key}>
                   <a className="card-subtitle mb-2" href={val}>
                     {key}
