@@ -1,22 +1,19 @@
 {
-  "name": "react-coding-challenge",
-  "version": "1.0.0",
-  "description": "A package containing a simple dummy book API, which should be used in the challenge",
-  "scripts": {
-    "start": "json-server --port 3011 --watch api_books.json",
-    "start_weather": "json-server --port 3010 --watch api_orai.json"
-  },
-  "keywords": [
-    "react challenge",
-    "tryouts",
-    "react developer",
-    "hiring"
+  "private": true,
+  "workspaces": [
+    "server",
+    "client"
   ],
-  "author": "Adapt A/S",
-  "license": "ISC",
-  "devDependencies": {
-    "json-server": "0.10.1",
-    "prettier": "^2.0.5"
+  "scripts": {
+    "test": "lerna run test",
+    "start": "lerna run start"
   },
-  "dependencies": {}
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leq382121/book-store.git"
+  },
+  "devDependencies": {
+    "lerna": "^3.22.1"
+  },
+  "name": "adaptchallangebookstore"
 }
