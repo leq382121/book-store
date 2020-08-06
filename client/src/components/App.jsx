@@ -21,9 +21,13 @@ function App() {
   useEffect(() => {
     // Fetching data from Books API
     const getTypes = async () => {
-      const types = await fetch(API_URL + "/subjects").then((res) =>
-        res.json()
-      );
+      const types = await fetch(API_URL + "/subjects")
+        .then((res) => res.json())
+        .catch((error) => {
+          throw error;
+        });
+
+      console.log(types);
 
       // Updating hook state
       setBooksType(types);

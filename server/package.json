@@ -5,7 +5,8 @@
   "scripts": {
     "test": "echo testing server with version: $npm_package_version",
     "start": "json-server --port 3011 --watch api_books.json",
-    "start_weather": "json-server --port 3010 --watch api_orai.json"
+    "start_weather": "json-server --port 3010 --watch api_orai.json",
+    "start_ws": "nodemon server.js"
   },
   "keywords": [
     "react challenge",
@@ -19,5 +20,9 @@
     "json-server": "0.10.1",
     "prettier": "^2.0.5"
   },
-  "dependencies": {}
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.4",
+    "ws": "^7.3.1"
+  }
 }

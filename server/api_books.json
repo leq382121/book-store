@@ -129,80 +129,20 @@
       "title": "The Adventures of Tom Sawyer"
     },
     {
-      "title": "New Title",
+      "title": "Knyga Hello",
+      "subjects": [
+        "Fiction",
+        "Science"
+      ],
       "id": 33284
     },
     {
-      "title": "test title is good",
+      "title": "Knyga",
+      "subjects": [
+        "Fiction",
+        "Science"
+      ],
       "id": 33285
-    },
-    {
-      "title": [
-        "Aaaaa"
-      ],
-      "subjects": [
-        "Fiction",
-        "Science"
-      ],
-      "id": 33286
-    },
-    {
-      "title": "Nauja knyga dabar as ja editinu",
-      "subjects": [
-        "Science"
-      ],
-      "id": 33287
-    },
-    {
-      "title": "DAr viena nauja knyga",
-      "subjects": [
-        "Fiction"
-      ],
-      "id": 33288
-    },
-    {
-      "title": "Pukeee",
-      "subjects": [
-        "Fiction"
-      ],
-      "id": 33289
-    },
-    {
-      "title": "Puka la caru",
-      "subjects": [
-        "Science"
-      ],
-      "id": 33290
-    },
-    {
-      "title": "Knyga Only fiction",
-      "subjects": [
-        "Fiction"
-      ],
-      "id": 33291
-    },
-    {
-      "title": "Knyga Only Science",
-      "subjects": [
-        "Science"
-      ],
-      "id": 33292
-    },
-    {
-      "title": "Blablabla",
-      "subjects": [
-        "Fiction",
-        "Science"
-      ],
-      "id": 33293
-    },
-    {
-      "title": "Book Hello",
-      "subjects": [
-        "Fiction",
-        "Science"
-      ],
-      "id": 33294
     }
   ]
 }

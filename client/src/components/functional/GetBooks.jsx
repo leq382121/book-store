@@ -5,14 +5,26 @@ import { API_URL } from "../../constants/global";
 const GetBooks = (props) => {
   const [booksState, setBooksState] = useState([]);
   const selectedSubject = props.match.params.BookSubject;
+  const ws = new WebSocket("ws://localhost:3030"); // try wss?
 
   useEffect(() => {
+    ws.onopen = () => {
+      console.log("Now connected");
+    };
+
+    ws.onmessage = (event) => {
+      const books = JSON.parse(event.data);
+      books.forEach((book) => console.log(book));
+    };
+
     const getBookDataBySubject = async () => {
       const data = await fetch(
         API_URL + `/books/?subjects_like=${selectedSubject}`
       )
         .then((res) => res.json())
         .catch(console.log);
+
+      console.log(data);
 
       setBooksState(data);
     };
