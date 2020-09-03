@@ -1,4 +1,5 @@
 import React from "react";
+import './AddBookForm.css';
 import { BOOK_SCHEMA } from "../../constants/global";
 
 function AddBookForm({ handleAddBook, booksType }) {
@@ -17,8 +18,8 @@ function AddBookForm({ handleAddBook, booksType }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label> Add New Book Title </label>
+    <form className="AddBookForm" onSubmit={handleSubmit}>
+      <label className="AddBookForm__label" > Add New Book Title </label>
       <br />
 
       <input name={BOOK_SCHEMA.title} type="text" />

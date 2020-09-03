@@ -1,0 +1,7 @@
+.AddBookForm {
+    padding: 2rem;
+
+    &__label {
+        text-decoration: underline;
+    }
+}

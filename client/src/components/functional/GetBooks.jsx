@@ -5,17 +5,19 @@ import { API_URL } from "../../constants/global";
 const GetBooks = (props) => {
   const [booksState, setBooksState] = useState([]);
   const selectedSubject = props.match.params.BookSubject;
-  const ws = new WebSocket("ws://localhost:3030"); // try wss?
+  const ws = new WebSocket("ws://localhost:3501"); // try wss?
 
   useEffect(() => {
     ws.onopen = () => {
       console.log("Now connected");
+
+      ws.send("alus");
     };
 
-    ws.onmessage = (event) => {
-      const books = JSON.parse(event.data);
-      books.forEach((book) => console.log(book));
-    };
+    // ws.onmessage = (event) => {
+    //   const books = JSON.parse(event.data);
+    //   books.forEach((book) => console.log(book));
+    // };
 
     const getBookDataBySubject = async () => {
       const data = await fetch(
@@ -33,16 +35,6 @@ const GetBooks = (props) => {
   }, [selectedSubject]);
 
   const handleAddBook = (newBook) => {
-    // optimistic user interface
-    // using here due to update list of books
-    if (
-      newBook.subjects.find(
-        (currentlyAddibleGenre) => currentlyAddibleGenre === selectedSubject
-      )
-    ) {
-      setBooksState([...booksState, newBook]);
-    }
-
     fetch(API_URL + "/books", {
       method: "POST",
       headers: {
@@ -53,6 +45,18 @@ const GetBooks = (props) => {
         title: newBook.title[0],
         subjects: newBook.subjects,
       }),
+    }).then((res) => {
+      console.log(res);
+
+      if (res.ok && res.status === 201) {
+        const isSameSubjects = newBook.subjects.find(
+          (currentlyAddibleGenre) => currentlyAddibleGenre === selectedSubject
+        );
+
+        if (isSameSubjects) {
+          setBooksState([...booksState, newBook]);
+        }
+      }
     });
   };
 
